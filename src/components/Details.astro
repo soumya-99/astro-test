@@ -1,0 +1,75 @@
+---
+export interface DetailsProps {
+    title: string;
+}
+
+const { title } = Astro.props as DetailsProps;
+
+const items = [
+    {
+        title: "Item 1",
+        description: "Item 1 description",
+        image: "https://picsum.photos/200/200",
+    },
+    {
+        title: "Item 2",
+        description: "Item 2 description",
+        image: "https://picsum.photos/200/200",
+    },
+    {
+        title: "Item 3",
+        description: "Item 3 description",
+        image: "https://picsum.photos/200/200",
+    },
+    {
+        title: "Item 4",
+        description: "Item 4 description",
+        image: "https://picsum.photos/200/200",
+    },
+];
+---
+
+<fieldset>
+    <legend>{title}</legend>
+    <div class="items__outer">
+        <ul class="items">
+            {
+                items.map((item) => (
+                    <li>
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                        <img src={item.image} alt={item.title} />
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</fieldset>
+
+<style>
+    fieldset {
+        border: 2px solid rgb(255, 255, 255);
+        padding: 10px;
+        border-radius: 0.4rem;
+    }
+
+    .items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+
+    li {
+        display: flex;
+        list-style: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -20px;
+    }
+
+    img {
+        border-radius: 0.4rem;
+    }
+</style>
